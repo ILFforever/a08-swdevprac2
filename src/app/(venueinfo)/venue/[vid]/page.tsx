@@ -13,7 +13,7 @@ export default async function VenueDetailPage({params}: {params: {vid: string}})
   // Check if the venue exists in our map
   return (
     <main className="text-center p-5">
-      <h1 className="text-lg font-medium">{venueDetail.data.model}</h1>
+      <h1 className='text-center font-bold text-xl'>{venueDetail.data.name}</h1>
       <div className="flex flex-row my-5">
         <Image src={venueDetail.data.picture}
           alt="Product Picture"
