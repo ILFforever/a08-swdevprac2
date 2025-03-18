@@ -3,15 +3,19 @@
 @tailwind utilities;
 
 :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 240, 249, 255; /* Lighter sky blue */
+  --background-end-rgb: 176, 226, 255; /* Medium sky blue */
+  
+  /* Add these new variables for a more dynamic background */
+  --accent-color-light: rgba(255, 255, 255, 0.7);
+  --accent-color-medium: rgba(135, 206, 250, 0.3);
+
   --max-width: 1100px;
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
     "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
     "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
-  --foreground-rgb: 0, 0, 0; /* Changed to black */
-  --background-start-rgb: 135, 206, 235; /* Sky blue */
-  --background-end-rgb: 176, 226, 255; /* Lighter sky blue for gradient */
 
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
@@ -57,13 +61,20 @@ body {
 }
 
 body {
-  color: rgb(var(--foreground-rgb)); /* Black text */
+  color: rgb(var(--foreground-rgb));
   margin-top: 50px;
-  background: linear-gradient(
+  background: 
+    /* Subtle pattern overlay */
+    linear-gradient(120deg, var(--accent-color-light) 0%, transparent 40%),
+    linear-gradient(220deg, var(--accent-color-medium) 10%, transparent 80%),
+    /* Base gradient */
+    linear-gradient(
       to bottom,
       rgb(var(--background-start-rgb)),
       rgb(var(--background-end-rgb))
     );
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
 a {
@@ -74,5 +85,17 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: light; /* Override dark mode to use light mode styles */
+  }
+}
+
+@keyframes subtleShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
